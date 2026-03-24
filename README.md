@@ -6,21 +6,23 @@ Summary: This rush will help you to strengthen the skills acquired over the prev
 
 ## Contents
 
-- [Chapter I](#chapter-i)
-  - [Foreword](#foreword)
-- [Chapter II](#chapter-ii)
-  - [Instructions](#instructions)
-- [Chapter III](#chapter-iii)
-  - [Specific instructions for the day](#specific-instructions-for-the-day)
-- [Chapter IV](#chapter-iv)
-  - [Mandatory part](#mandatory-part)
-    - [Main program](#main-program)
-    - [Development](#development)
-    - [Research](#research)
-- [Chapter V](#chapter-v)
-  - [Bonus part](#bonus-part)
-- [Chapter VI](#chapter-vi)
-  - [Submission and peer-evaluation](#submission-and-peer-evaluation)
+- [Food and nutrition](#food-and-nutrition)
+  - [Contents](#contents)
+  - [Chapter I](#chapter-i)
+    - [Foreword](#foreword)
+  - [Chapter II](#chapter-ii)
+    - [Instructions](#instructions)
+  - [Chapter III](#chapter-iii)
+    - [Specific instructions for the day](#specific-instructions-for-the-day)
+  - [Chapter IV](#chapter-iv)
+    - [Mandatory part](#mandatory-part)
+      - [Main program](#main-program)
+      - [Development](#development)
+      - [Research](#research)
+  - [Chapter V](#chapter-v)
+    - [Bonus part](#bonus-part)
+  - [Chapter VI](#chapter-vi)
+    - [Submission and peer-evaluation](#submission-and-peer-evaluation)
 
 ## Chapter I
 
@@ -40,6 +42,16 @@ What if we had an app that could predict how tasty a dish could be with the ingr
 ## Chapter II
 
 ### Instructions
+
+How to study at “School 21”:
+- You’ll discover a unique educational experience here. It’s built around autonomy and freedom. You’re given a task and must complete it. During the course, delve deeper into the subject, solve problems, and use all available resources, including internet resources and AI tools like GigaChat, to find information. Be mindful of the quality of information: verify, critically think, analyze, compare. 
+- Peer-to-Peer (P2P) learning is a process in which students exchange knowledge and experiences, acting as mentors and students simultaneously. This allows you to learn not only from material but also from others. 
+- Don’t hesitate to seek help. Around you are peers who are also navigating this path for the first time. Likewise, don’t be afraid to respond to requests for help. Your experience is valuable and useful, so share it openly with others. Stay updated with the latest community announcements by joining Rocket.Chat. 
+- Your learning is meaningless if you just copy others’ solutions. When receiving help, make sure you understand the “why”, “how”, and “purpose” behind it. Don’t be afraid to make mistakes.
+- Does the task seem impossible? Take a break, get some fresh air and clear your mind—this has helped many people. After that the solution may come naturally to you.
+- The learning process is as important as the result. It’s not about solving a task; it’s about understanding HOW to solve it. 
+
+How to work with the project:
 
 * Use this page as your only reference. Do not pay attention to rumors or speculation about how to prepare your solution.
 * Here and throughout, we use Python 3 as the only correct version of Python.
