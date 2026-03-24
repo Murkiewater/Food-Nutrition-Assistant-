@@ -6,18 +6,21 @@ Summary: This rush will help you to strengthen the skills acquired over the prev
 
 ## Contents
 
-1. [Chapter I](#chapter-i) \
-    1.1. [Foreword](#foreword)
-2. [Chapter II](#chapter-ii) \
-    2.1. [Instructions](#instructions)
-3. [Chapter III](#chapter-iii) \
-    3.1. [Specific instructions for the day](#specific-instructions-for-the-day)
-4. [Chapter IV](#chapter-iv) \
-    4.1. [Mandatory part](#mandatory-part)
-5. [Chapter V](#chapter-v) \
-    5.1. [Bonus part](#bonus part)
-6. [Chapter VI](#chapter-vi) \
-    6.1. [Submission and peer-evaluation](#submission-and-peer-evaluation)
+- [Chapter I](#chapter-i)
+  - [Foreword](#foreword)
+- [Chapter II](#chapter-ii)
+  - [Instructions](#instructions)
+- [Chapter III](#chapter-iii)
+  - [Specific instructions for the day](#specific-instructions-for-the-day)
+- [Chapter IV](#chapter-iv)
+  - [Mandatory part](#mandatory-part)
+    - [Main program](#main-program)
+    - [Development](#development)
+    - [Research](#research)
+- [Chapter V](#chapter-v)
+  - [Bonus part](#bonus-part)
+- [Chapter VI](#chapter-vi)
+  - [Submission and peer-evaluation](#submission-and-peer-evaluation)
 
 ## Chapter I
 
@@ -40,7 +43,7 @@ What if we had an app that could predict how tasty a dish could be with the ingr
 
 * Use this page as your only reference. Do not pay attention to rumors or speculation about how to prepare your solution.
 * Here and throughout, we use Python 3 as the only correct version of Python.
-* The python files for python exercises (module01, module02, module03) must have the following block at the end: `if __name__ == ‘__main__’`.
+* The python files for python exercises (module01, module02, module03) must have the following block at the end: `if __name__ == '__main__'`.
 * Pay attention to the permissions of your files and directories.
 * To be assessed your solution must be in your GIT repository.
 * Your solutions will be evaluated by your peers in the bootcamp.
@@ -72,7 +75,7 @@ Your work will have three stages: research (working in a notebook), development 
 
 #### Main program
 
-Let's start from the end. The program is a Python script (```nutritionist.py```).
+Let's start from the end. The program is a Python script (`nutritionist.py`).
 
 * It takes in a list of ingredients.
 * It forecasts and returns the rating class (bad, so-so, or great) of a potential dish containing the ingredients.
@@ -107,7 +110,7 @@ shake-239217
 
 #### Development
 
-You need to create a Python module (```recipes.py```) with the classes and
+You need to create a Python module (`recipes.py`) with the classes and
 methods that are used in the main script.
 
 #### Research
@@ -117,7 +120,7 @@ in the classes and methods above in a Jupyter Notebook (`recipes.ipynb`).
 
 * Forecast
   * Data Preparation 
-    * Use the [Epicurious dataset](https://drive.google.com/file/d/1hzmxNBrY7-9mv5EpqAvhVUiJahfrcYUN/view?usp=sharing) collected by HugoDarwood.
+    * Use the **Epicurious dataset** (download in materials) collected by HugoDarwood.
     * Filter the columns; the fewer non-ingredient columns in your dataset, the better. You will predict the rating or rating category using only the ingredients. 
   * Regression 
     * Try different algorithms and their hyperparameters for rating prediction. Select the best one based on cross-validation and determine the score (RMSE) using the test subsample. 
