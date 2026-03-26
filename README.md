@@ -43,13 +43,14 @@ What if we had an app that could predict how tasty a dish could be with the ingr
 
 ### Instructions
 
-How to study at “School 21”:
-- You’ll discover a unique educational experience here. It’s built around autonomy and freedom. You’re given a task and must complete it. During the course, delve deeper into the subject, solve problems, and use all available resources, including internet resources and AI tools like GigaChat, to find information. Be mindful of the quality of information: verify, critically think, analyze, compare. 
-- Peer-to-Peer (P2P) learning is a process in which students exchange knowledge and experiences, acting as mentors and students simultaneously. This allows you to learn not only from material but also from others. 
-- Don’t hesitate to seek help. Around you are peers who are also navigating this path for the first time. Likewise, don’t be afraid to respond to requests for help. Your experience is valuable and useful, so share it openly with others. Stay updated with the latest community announcements by joining Rocket.Chat. 
-- Your learning is meaningless if you just copy others’ solutions. When receiving help, make sure you understand the “why”, “how”, and “purpose” behind it. Don’t be afraid to make mistakes.
-- Does the task seem impossible? Take a break, get some fresh air and clear your mind—this has helped many people. After that the solution may come naturally to you.
-- The learning process is as important as the result. It’s not about solving a task; it’s about understanding HOW to solve it. 
+How to learn at “School 21”:
+
+- Here, you’ll find a unique learning experience with a lot of freedom. You’re given a task and left to find your own way to solve it, using whatever resources work best for you — whether that’s the Internet or AI tools like GigaChat. Just be mindful of information quality: verify, think critically, analyze, and compare.
+- Peer-to-peer (P2P) learning is the exchange of knowledge and experience with peers, where everyone acts as both mentor and student. This approach allows you to gain a deeper understanding of the material by learning from one another.
+- Feel free to ask for help: around you are peers who are also navigating this path for the first time. Share your own experience and ideas with others.  Join Rocket.Chat to stay updated with the latest community announcements. 
+- Your learning is meaningless if you just copy someone else’s solutions. When receiving help from others, always make sure you fully understand the “why”, “how”, and “purpose” behind the solution. Don’t be afraid to make mistakes. 
+- Does the task seem impossible? Take a break, get some fresh air and clear your mind — this has helped many people. Maybe after that, the solution will come to you naturally.
+- The learning process is just as important as the result. It’s not just about completing the task — it’s about understanding HOW to solve it. 
 
 How to work with the project:
 
