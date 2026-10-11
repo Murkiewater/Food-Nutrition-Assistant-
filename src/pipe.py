@@ -144,6 +144,7 @@ class FeatureExtractor(BaseEstimator, TransformerMixin):
         if self.target_name in X.columns:
             X = X.drop(columns=drop_cols)
             print(f"[FeatureExtractor] Feature extracted. {X.shape}")
+            return X
         else:
             raise Exception(f"[FeatureExtractor] There is no col ratings in dataset.")
 
