@@ -4,7 +4,10 @@ import logging
 PARSING_NUMBER_ATTEMPTS = 3
 RECIPES_JSON_PATH = Path("src/data/full_format_recipes.json")
 RECIPES_DB_PATH = Path("src/data/recipe_urls.db")
-PARSING_URL_LOG_FILE = Path("src/data/recipe_urls.db")
+PARSING_URL_LOG_FILE = Path("src/parse_url.log")
+PROCESSED_DATASET_PATH = Path('src/data/epi_r_processed.csv')
+
+
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
