@@ -1,9 +1,13 @@
 import datetime
+from sklearn.preprocessing import MultiLabelBinarizer
 from bs4 import BeautifulSoup as bs
 import abc
 from urllib.request import urlopen as url
+from config import PROCESSED_DATASET_PATH, INGREDIENTS
+from pipe import StrictIngredientSelector
+import pandas as pd
 
-
+# fmt: off
 # must be passed raw html
 class Recipe:
     __metaclass__ = abc.ABCMeta
@@ -15,7 +19,7 @@ class Recipe:
     categories = []
 
     @abc.abstractstaticmethod
-    def get_title(self, page):
+    def get_title(self, page)e
         pass
 
     @abc.abstractstaticmethod
@@ -149,24 +153,47 @@ class EP_Recipe(Recipe):
             return float(page.find('span', {'class': 'nutri-data', 'itemprop': 'proteinContent'}).text.split(' ')[0])
         except:
             return None
+# fmt: on
 
 
+def get_bin_vector(data, base_data):
+    input_set = set(data)
+    bin_vector = [1 if word in input_set else 0 for word in base_data]
+    
+    return pd.DataFrame(data=[bin_vector], columns=base_data) 
 
-if __name__ == '__main__':
-    import pickle
-    import json
-    import multiprocessing
-    # ep_urls = pickle.load(open('epi_urls.checkpoint','rb'))
-    # ep_urls = [str(i) for i in ep_urls]
-    # p = multiprocessing.Pool(4)
-    # output = p.map(EP_Recipe,ep_urls)
-    # pickle.dump(output,open('epi_recipes.final','wb'))
-    data = pickle.load(open('epi_recipes.final','rb'))
-    ar = []
-    for i in data:
-        ar.append(i.__dict__)
-    pickle.dump(ar,open('epi_recipe_dict_form.dict','wb'))
 
-    with open('result.json', 'w') as fp:
-        json.dump(ar, fp)
+def get_base_ingredients(file_pat=PROCESSED_DATASET_PATH):
+    # читаем файл с ингредиентами
+    all_data = pd.read_csv('src/data/epi_r.csv', nrows=0).columns.tolist()
+    ing_selector = StrictIngredientSelector()
+    base_ingredients = ing_selector.filter_columns(all_data)
+    return base_ingredients
 
+
+class Tests:
+
+    def test_get_base_ingredients(self):
+        result = get_base_ingredients()
+        expected = INGREDIENTS
+        assert result == expected
+
+
+# if __name__ == "__main__":
+#     import pickle
+#     import json
+#     import multiprocessing
+
+#     # ep_urls = pickle.load(open('epi_urls.checkpoint','rb'))
+#     # ep_urls = [str(i) for i in ep_urls]
+#     # p = multiprocessing.Pool(4)
+#     # output = p.map(EP_Recipe,ep_urls)
+#     # pickle.dump(output,open('epi_recipes.final','wb'))
+#     data = pickle.load(open("epi_recipes.final", "rb"))
+#     ar = []
+#     for i in data:
+#         ar.append(i.__dict__)
+#     pickle.dump(ar, open("epi_recipe_dict_form.dict", "wb"))
+
+#     with open("result.json", "w") as fp:
+#         json.dump(ar, fp)

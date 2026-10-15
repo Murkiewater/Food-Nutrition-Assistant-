@@ -16,6 +16,7 @@ from config import (
     PARSING_NUMBER_ATTEMPTS,
     SEARCH_URL,
     INIT_DB,
+    INGREDIENTS
 )
 
 logging.basicConfig(
@@ -214,7 +215,8 @@ def main(init_db=False):
             soup = BeautifulSoup(search_content, "html.parser")
             check_403(soup)
             logger.debug("Поисковый запрос выполнен.")
-            recipe_titles = soup.find_all(
+            recipes_tag = soup.find("div", class_="MultiGridWrapper-jCzrBF jhDZlM")
+            recipe_titles = recipes_tag.find_all(
                 "a", class_="BaseLink-haTOKm Link-ckAjCj fSXnEB"
             )
             recipe_links = [
@@ -252,7 +254,7 @@ def main(init_db=False):
 
 
 def process_manage(init_db=False):
-    n = 200
+    n = 1000
     for i in range(n):
         main(init_db=init_db)
         time.sleep(10)

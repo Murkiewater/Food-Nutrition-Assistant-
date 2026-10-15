@@ -1,23 +1,8 @@
 import sys
-import pandas as pd
-from pathlib import Path
-from sklearn.preprocessing import MultiLabelBinarizer
-from config import PROCESSED_DATASET_PATH
-
-
-def get_base_ingredients(file_pat=PROCESSED_DATASET_PATH):
-    # читаем файл с ингредиентами
-    with open(file_pat, "r") as f:
-        line = f.readline()
-    base_ingredients = [word.strip() for word in line.split(sep=",")]
-    return base_ingredients
-
-
-def get_bin_vector(data, base_data):
-    mlb = MultiLabelBinarizer(classes=base_data)
-    mlb.fit(base_data)
-
-    return mlb.transform(data)
+from sysconfig import get_python_version
+from recipe import get_base_ingredients, get_bin_vector
+from config import MAIN_MODEL_PATH
+import joblib
 
 
 def main():
@@ -25,20 +10,22 @@ def main():
         print("There must be several ingredients")
 
     # Читаем список ингредиентов
-    ingredietns = sys.arg[1:]
+    ingredients = sys.argv[1:]
 
     # Инициализируем список базовых ингдериентов
     base_ingredients = get_base_ingredients()
-    
-
     # Получаем вектор для предсказания модели
-    # Возможно, сделать читаемым из файла
-
+    bin_vector = get_bin_vector(ingredients, base_ingredients)
     # Предсказываем значение по вектору
+    model = joblib.load(MAIN_MODEL_PATH)
+    score = model.predict(bin_vector)
 
     # Выводим прогноз в зависимости от предсказания
+    print(score[0])
+    
 
     # Выводим список нутриентов для каждого ингредиента
+
     # Добавляем сколько это от суточной нормы
 
     # Сортируем исходный dataset по приближенному расстоянию
