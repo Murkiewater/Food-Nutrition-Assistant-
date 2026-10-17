@@ -5,8 +5,8 @@ PARSING_NUMBER_ATTEMPTS = 3
 RECIPES_JSON_PATH = Path("src/data/full_format_recipes.json")
 RECIPES_DB_PATH = Path("src/data/recipe_urls.db")
 PARSING_URL_LOG_FILE = Path("src/parse_url.log")
-PROCESSED_DATASET_PATH = Path("src/data/epi_r.csv")
 MAIN_MODEL_PATH = Path("src/data/models/rf_clf_rmse_1.2713903560555384.sav")
+PROCESSED_DATASET_PATH = Path("src/data/epi_r_processed.csv")
 
 
 HEADERS = {

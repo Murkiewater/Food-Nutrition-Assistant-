@@ -3,7 +3,12 @@ from sklearn.preprocessing import MultiLabelBinarizer
 from bs4 import BeautifulSoup as bs
 import abc
 from urllib.request import urlopen as url
-from config import PROCESSED_DATASET_PATH, INGREDIENTS
+from config import (
+    PROCESSED_DATASET_PATH,
+    INGREDIENTS,
+    RECIPES_DB_PATH,
+    RECIPES_JSON_PATH,
+)
 import pandas as pd
 import sqlite3
 
@@ -191,7 +196,8 @@ def prepare_json_df(df):
     df = df.drop_duplicates(subset=df_cols)
     return df
 
-def get_json_urls(urls_db="data/recipe_urls.db", json_path="data/recipes.json"):
+
+def get_json_urls(urls_db=RECIPES_DB_PATH, json_path=RECIPES_JSON_PATH):
     # импорт json данных
     query = "SELECT * FROM parsed_recipes"
     conn = sqlite3.connect(urls_db)
@@ -199,14 +205,19 @@ def get_json_urls(urls_db="data/recipe_urls.db", json_path="data/recipes.json"):
     df_json = pd.read_json(json_path)
     df_json = prepare_json_df(df_json)
     # соединить с пропасенными данными
-    rename_cols = {'date': 'recipe_date'}
-    json_urls = pd.merge(
-        left=df_json,
-        right=parsed_urls,
-        left_on=["title", "index_row"],
-        right_on=["title", "df_index"],
-    ).drop(columns=["df_index", "index_row"]).rename(columns=rename_cols)
+    rename_cols = {"date": "recipe_date"}
+    json_urls = (
+        pd.merge(
+            left=df_json,
+            right=parsed_urls,
+            left_on=["title", "index_row"],
+            right_on=["title", "df_index"],
+        )
+        .drop(columns=["df_index", "index_row"])
+        .rename(columns=rename_cols)
+    )
     return json_urls
+
 
 def get_df_with_urls(reading_columns_path="data/epi_r_processed.csv"):
     # соединить с исходными данными
@@ -221,9 +232,9 @@ def get_df_with_urls(reading_columns_path="data/epi_r_processed.csv"):
     df = df[~mask_empty_urls]
     return df
 
+
 def get_full_epicurious_url(url):
     return "https://epicurious.com" + url
-
 
 
 class StrictIngredientSelector:
@@ -448,6 +459,8 @@ class ModelSelectionRegression:
 def output_cross_val_results(cvs_result, model_name=""):
     print(f"""Cross-validation sore of mode {model_name}
 mean = {-np.mean(cvs_result):.2f}, std={np.std(cvs_result):.2f}""")
+
+
 class Tests:
 
     def test_get_base_ingredients(self):
@@ -455,10 +468,11 @@ class Tests:
         expected = INGREDIENTS
         assert result == expected
 
-def output_recommendation(df, words, base_ingredients_path='data/epi_r_processed.csv'):
+
+def output_recommendation(df, words, base_ingredients_path="data/epi_r_processed.csv"):
     # определяем вектор
     base_data = get_base_ingredients(file_pat=base_ingredients_path)
-    bin_list= get_bin_list(words, base_data=base_data)
+    bin_list = get_bin_list(words, base_data=base_data)
     # для каждого слова считаем косинусное расстояние и сохраняем вdf
     bin_array = np.array(bin_list)
     # матрица
@@ -472,15 +486,18 @@ def output_recommendation(df, words, base_ingredients_path='data/epi_r_processed
     mask = union > 0
     jaccard_scores[mask] = intersection[mask] / union[mask]
 
-    jaccard_series = pd.Series(jaccard_scores, index=df.index).sort_values(ascending=False)
+    jaccard_series = pd.Series(jaccard_scores, index=df.index).sort_values(
+        ascending=False
+    )
     jaccard_series.head(20)
     # сортируем по значению косинусного возвращаем столбец с URL (удаляем пропуски)
     final_series = jaccard_series
     url_ind_3 = final_series[:10].index
-    print(url_ind_3)
+    # print(url_ind_3)
     for ind, row in df.loc[url_ind_3, :].iterrows():
-        url = get_full_epicurious_url(row['recipe_url'])
-        print(f' - {row['title'].strip()}, rating: {row['rating']}, URL: {url}')    
+        url = get_full_epicurious_url(row["recipe_url"])
+        print(f" - {row['title'].strip()}, rating: {row['rating']}, URL: {url}")
+
 
 # if __name__ == "__main__":
 #     import pickle

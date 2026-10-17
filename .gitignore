@@ -60,3 +60,5 @@ recipes.json
 lasso_coef.csv
 models/
 /.vscode
+
+.env
