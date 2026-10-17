@@ -49,3 +49,14 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+__pycache__
+README.pdf
+**.sh
+**.log
+recipes.json
+*/tests/*
+**/html_data/**
+lasso_coef.csv
+models/
+/.vscode

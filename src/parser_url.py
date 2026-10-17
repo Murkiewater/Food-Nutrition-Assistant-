@@ -18,6 +18,7 @@ from config import (
     INIT_DB,
     INGREDIENTS
 )
+from recipe import get_full_epicurious_url, prepare_json_df
 
 logging.basicConfig(
     filename="parse_url.log",
@@ -26,12 +27,6 @@ logging.basicConfig(
     encoding="utf-8",
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",  # %(name)s покажет, откуда лог
 )
-# logging.basicConfig(
-#     level=logging.INFO,
-#     encoding="utf-8",
-#     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-#     handlers=[logging.FileHandler("parse_url.log", mode="a")],  # Только в файл!
-# )
 
 logger = logging.getLogger(__name__)
 
@@ -106,14 +101,6 @@ def check_403(soup):
         raise Exception(ERROR_FORBIDDEN_403)
 
 
-def prepare_json_df(df):
-    df = df.dropna(how="all")
-    df_cols = ["fat", "calories", "protein", "rating", "sodium", "title", "desc"]
-    df["index_row"] = df.index
-    df = df.drop_duplicates(subset=df_cols)
-    return df
-
-
 def get_content_from_url(url):
     resp = requests.get(url, headers=HEADERS, timeout=(20, 30))
     return resp.content
@@ -135,10 +122,6 @@ def get_url_content_iter(url):
         raise Exception(ERROR_ATTEMPT_MAIN + desc_str)
 
     return content
-
-
-def get_full_epicurious_url(url):
-    return "https://epicurious.com" + url
 
 
 def get_link(links, row):
@@ -179,7 +162,7 @@ def init_database():
     logger.debug("База данных успешно пересоздана (старые данные удалены).")
 
 
-def main(init_db=False):
+def main_parse(init_db=False):
     logger.info("Start parsing")
     logger.debug("Read json file with pandas.")
     df = pd.read_json(RECIPES_JSON_PATH)
@@ -253,12 +236,12 @@ def main(init_db=False):
             logger.error(f"Парсинг остановлен. {str(ex)}, {idx}, {row}")
 
 
-def process_manage(init_db=False):
+def parse_process_manage(init_db=False):
     n = 1000
     for i in range(n):
-        main(init_db=init_db)
+        main_parse(init_db=init_db)
         time.sleep(10)
 
 
 if __name__ == "__main__":
-    process_manage(INIT_DB)
+    parse_process_manage(INIT_DB)
